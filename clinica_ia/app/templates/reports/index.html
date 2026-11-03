@@ -1,0 +1,11 @@
+{% extends "appbuilder/base.html" %}
+{% block content %}
+<div class="container">
+  <h2>Reportes</h2>
+  <ul>
+    <li><a href="{{ url_for('ReporteRiesgoView.index') }}">Pacientes con riesgo alto/medio por fecha</a></li>
+    <li><a href="{{ url_for('ReporteExamenesView.index') }}">Exámenes por especialidad y médico</a></li>
+    <li><a href="{{ url_for('ReporteDiagnosticosView.index') }}">Diagnósticos por tipo y sexo</a></li>
+  </ul>
+</div>
+{% endblock %}

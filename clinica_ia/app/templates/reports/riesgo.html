@@ -1,0 +1,40 @@
+{% extends "appbuilder/base.html" %}
+{% block content %}
+<div class="container">
+  <h2>Reporte: Pacientes con riesgo alto/medio</h2>
+  <form method="get" class="form-inline">
+    <label>Desde: <input type="date" name="fecha_inicio" value="{{ fecha_inicio }}" required></label>
+    <label>Hasta: <input type="date" name="fecha_fin" value="{{ fecha_fin }}" required></label>
+    <label>Nivel:
+      <select name="nivel">
+        <option value="">Todos</option>
+        <option value="Alto" {% if nivel == 'Alto' %}selected{% endif %}>Alto</option>
+        <option value="Medio" {% if nivel == 'Medio' %}selected{% endif %}>Medio</option>
+        <option value="Bajo" {% if nivel == 'Bajo' %}selected{% endif %}>Bajo</option>
+      </select>
+    </label>
+    <button type="submit" class="btn btn-primary">Filtrar</button>
+  </form>
+  <hr>
+  {% if resultados %}
+  <table class="table table-striped">
+    <thead>
+      <tr><th>Paciente</th><th>Nivel</th><th>Probabilidad</th><th>Fecha</th><th>Justificación IA</th></tr>
+    </thead>
+    <tbody>
+      {% for r in resultados %}
+      <tr>
+        <td>{{ r.nombre }}</td>
+        <td>{{ r.nivel_riesgo }}</td>
+        <td>{{ r.probabilidad }}</td>
+        <td>{{ r.fecha_prediccion }}</td>
+        <td>{{ r.texto_generado }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <p>No hay resultados para los filtros seleccionados.</p>
+  {% endif %}
+</div>
+{% endblock %}

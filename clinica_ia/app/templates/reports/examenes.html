@@ -1,0 +1,24 @@
+{% extends "appbuilder/base.html" %}
+{% block content %}
+<div class="container">
+  <h2>Reporte: Exámenes por especialidad y médico</h2>
+  <form method="get" class="form-inline">
+    <label>Desde: <input type="date" name="fecha_inicio" value="{{ fecha_inicio }}" required></label>
+    <label>Hasta: <input type="date" name="fecha_fin" value="{{ fecha_fin }}" required></label>
+    <button type="submit" class="btn btn-primary">Filtrar</button>
+  </form>
+  <hr>
+  {% if resultados %}
+  <table class="table table-striped">
+    <thead><tr><th>Especialidad</th><th>Médico</th><th>Total exámenes</th></tr></thead>
+    <tbody>
+      {% for r in resultados %}
+      <tr><td>{{ r.especialidad }}</td><td>{{ r.medico }}</td><td>{{ r.total_examenes }}</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <p>No hay resultados para los filtros seleccionados.</p>
+  {% endif %}
+</div>
+{% endblock %}
