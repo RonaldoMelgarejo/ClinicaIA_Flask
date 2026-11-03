@@ -17,6 +17,8 @@ SECRET_KEY = "12345678901234567890"
 SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:@localhost:3306/clinica_ia?charset=utf8mb4'
 # SQLALCHEMY_DATABASE_URI = 'postgresql://root:password@localhost/myapp'
 
+IA_MODELO = "google/gemma-2-2b-it"
+
 # Flask-WTF flag for CSRF
 CSRF_ENABLED = True
 
